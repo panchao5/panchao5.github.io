@@ -1,22 +1,15 @@
 import React, { ReactNode } from "react";
-import { Global, css } from "@emotion/react";
+import useSiteMetadata from "@/hooks/use-site-metadata";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export default (props: LayoutProps) => {
+  const siteMetadata = useSiteMetadata();
   return (
     <>
-      <Global
-        styles={css`
-          html,
-          body {
-            padding: 0;
-            margin: 0;
-          }
-        `}
-      ></Global>
+      <header>{siteMetadata.title}</header>
       {props.children}
     </>
   );

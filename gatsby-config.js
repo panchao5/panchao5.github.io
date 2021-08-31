@@ -4,7 +4,6 @@ module.exports = {
     title: "panchao5.github.io",
   },
   plugins: [
-    "gatsby-plugin-emotion",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     {
@@ -13,14 +12,28 @@ module.exports = {
         icon: "src/images/icon.png",
       },
     },
-    "gatsby-plugin-mdx",
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "blogs",
-        path: "./blogs",
+        name: "posts",
+        path: `${__dirname}/src/content/posts`,
       },
-      __key: "blogs",
     },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "pages",
+        path: `${__dirname}/src/content/pages`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-mdx",
+      // options: {
+      //   gatsbyRemark
+      // }
+    },
+    // 'gatsby-remark-images',
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
   ],
 };
