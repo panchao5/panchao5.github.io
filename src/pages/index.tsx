@@ -6,13 +6,7 @@ import Layout from "../components/layout";
 const IndexPage = (props: PageProps) => {
   return (
     <Layout>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
+      <div className="flex h-52 justify-center items-center">
         起风了，
         <br />
         平庸的人也想努力的生存。
