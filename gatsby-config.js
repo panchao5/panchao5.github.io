@@ -7,6 +7,7 @@ module.exports = {
     title: "panchao5.github.io",
   },
   plugins: [
+    "gatsby-plugin-emotion",
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     {
