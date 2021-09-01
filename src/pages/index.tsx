@@ -1,18 +1,41 @@
-import * as React from "react";
-import { PageProps } from "gatsby";
-import Layout from "../components/layout";
+import React from "react";
+import { graphql, PageProps } from "gatsby";
+import Layout from "@/components/layout";
+import PostPreview, { PreviewPost } from "@/components/post-preview";
 
-// markup
-const IndexPage = (props: PageProps) => {
+type HomepageData = {
+  allPost: {
+    nodes: Array<PreviewPost>;
+  };
+};
+
+const Homepage = (props: PageProps<HomepageData>) => {
+  const {
+    data: {
+      allPost: { nodes: posts },
+    },
+  } = props;
+
   return (
     <Layout>
-      <div className="flex h-52 justify-center items-center">
-        起风了，
-        <br />
-        平庸的人也想努力的生存。
+      <div>
+        {posts.map((post) => (
+          <PostPreview key={post.slug} post={post}></PostPreview>
+        ))}
       </div>
     </Layout>
   );
 };
 
-export default IndexPage;
+// markup
+export default Homepage;
+
+export const query = graphql`
+  query RecentPostsQuery {
+    allPost(sort: { fields: [date], order: DESC }, limit: 5) {
+      nodes {
+        ...PostPreview
+      }
+    }
+  }
+`;
