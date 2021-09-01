@@ -1,4 +1,6 @@
 import React, { ReactNode } from "react";
+import GlobalStyles from "@/styles/GlobalStyles";
+import Navbar from "@/components/navbar";
 import useSiteMetadata from "@/hooks/use-site-metadata";
 
 interface LayoutProps {
@@ -9,7 +11,10 @@ export default (props: LayoutProps) => {
   const siteMetadata = useSiteMetadata();
   return (
     <>
-      <header>{siteMetadata.title}</header>
+      <GlobalStyles />
+      <header>
+        <Navbar siteTitle={siteMetadata.title} />
+      </header>
       {props.children}
     </>
   );
