@@ -6,7 +6,8 @@
     },
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "strict": true
   },
   "include": ["src"]
 }
