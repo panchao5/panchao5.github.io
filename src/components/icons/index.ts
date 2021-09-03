@@ -5,3 +5,7 @@ export * from "./chevron-forward";
 export * from "./chevron-back";
 export * from "./ellipsis";
 export * from "./time";
+export * from "./twitter";
+export * from "./instagram";
+export * from "./wechat";
+export * from "./weibo";

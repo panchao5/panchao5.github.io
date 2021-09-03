@@ -260,6 +260,41 @@ exports.onCreateNode = async ({
 };
 
 /**
+ * @type {import("gatsby").GatsbyNode["createResolvers"]}
+ */
+exports.createResolvers = ({ createResolvers }) => {
+  createResolvers({
+    SiteSiteMetadata: {
+      authorAvatar: {
+        type: "File",
+        async resolve(source, args, context, info) {
+          if (!source.authorAvatarPath) {
+            return null;
+          }
+          const fileNodes = await context.nodeModel.runQuery({
+            query: {
+              filter: {
+                absolutePath: {
+                  eq: source.authorAvatarPath,
+                },
+              },
+            },
+            type: "File",
+            firstOnly: false,
+          });
+
+          if (!fileNodes) {
+            return null;
+          }
+
+          return fileNodes[0];
+        },
+      },
+    },
+  });
+};
+
+/**
  * @type {import("gatsby").GatsbyNode["onCreateWebpackConfig"]}
  */
 exports.onCreateWebpackConfig = ({ actions }) => {

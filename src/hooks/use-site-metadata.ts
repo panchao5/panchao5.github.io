@@ -1,15 +1,13 @@
 import { graphql, useStaticQuery } from "gatsby";
+import { SiteMetadata } from "@/types";
 
 type QueryResult = {
   site: {
-    siteMetadata: {
-      siteUrl: string;
-      title: string;
-    };
+    siteMetadata: SiteMetadata;
   };
 };
 
-const useSiteMetadata = () => {
+function useSiteMetadata() {
   const {
     site: { siteMetadata },
   } = useStaticQuery<QueryResult>(graphql`
@@ -17,13 +15,29 @@ const useSiteMetadata = () => {
       site {
         siteMetadata {
           siteUrl
-          title
+          siteTitle
+          author
+          authorBio
+          authorAvatar {
+            childImageSharp {
+              gatsbyImageData(
+                aspectRatio: 1
+                width: 120
+                quality: 90
+                placeholder: BLURRED
+              )
+            }
+          }
+          socialLinks {
+            name
+            link
+          }
         }
       }
     }
   `);
 
   return siteMetadata;
-};
+}
 
 export default useSiteMetadata;
