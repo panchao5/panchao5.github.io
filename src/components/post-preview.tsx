@@ -1,18 +1,9 @@
 import "twin.macro";
+import { PreviewPost } from "@/types";
 import { graphql, Link } from "gatsby";
 import Tag from "@/components/tag";
 import { CalendarIcon } from "@/components/icons";
 import Card from "@/components/card";
-
-export interface PreviewPost {
-  slug: string;
-  title: string;
-  draft?: boolean;
-  tags: Array<{ name: string; slug: string }>;
-  date?: string;
-  description?: string;
-  excerpt: string;
-}
 
 export interface PostPreviewProps {
   className?: string;
@@ -25,20 +16,20 @@ const PostPreviewCard = ({ className, post }: PostPreviewProps) => {
 
   return (
     <Card as="article" className={className}>
-      <header tw="mb-2 ">
-        <div tw="space-x-2">
+      <header>
+        <div tw="mb-2 space-x-2">
           <h4 tw="inline-block font-medium text-lg">
             <Link tw="styled-underline" to={`/post/${post.slug}`}>
               {post.title}
             </Link>
           </h4>
           {post.draft && (
-            <span tw="px-2 text-sm rounded-sm bg-warning-200 bg-opacity-70">
+            <span tw="px-2 text-sm rounded-sm bg-warning-200 bg-opacity-70 whitespace-nowrap">
               🚧 work in progress
             </span>
           )}
         </div>
-        <div tw="text-gray-400 text-sm">
+        <div tw="text-gray-500 text-sm">
           <span tw="inline-flex items-center">
             <CalendarIcon tw="mr-1" />
             {post.date}

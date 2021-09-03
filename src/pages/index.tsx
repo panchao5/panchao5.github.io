@@ -1,7 +1,9 @@
 import React from "react";
+import "twin.macro";
 import { graphql, PageProps } from "gatsby";
 import Layout from "@/components/layout";
-import PostPreview, { PreviewPost } from "@/components/post-preview";
+import PostPreview from "@/components/post-preview";
+import { PreviewPost } from "@/types";
 
 type HomepageData = {
   allPost: {
@@ -18,7 +20,7 @@ const Homepage = (props: PageProps<HomepageData>) => {
 
   return (
     <Layout>
-      <div>
+      <div tw="mx-2">
         {posts.map((post) => (
           <PostPreview key={post.slug} post={post}></PostPreview>
         ))}
